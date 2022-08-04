@@ -1,0 +1,12 @@
+{
+    "title": "The Bible App",
+    "subtitle" : "A webase app for the bible",
+    "books" : [
+        {
+            "title": "King James Version",
+            "subtitle" : "",
+            "url" : "/kjv",
+            "thumbnail": "./assets/img/test.png"
+        }
+    ]
+}
