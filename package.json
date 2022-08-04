@@ -1,0 +1,15 @@
+{
+  "name": "thebibleapp",
+  "version": "1.0.0",
+  "description": "web base bibile app use offline",
+  "license": "",
+  "author": "codenametyler",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "browser-sync": "^2.26.7",
+    "gulp": "^4.0.2",
+    "gulp-cli": "^2.2.0",
+    "gulp-plumber": "^1.2.1",
+    "gulp-sass": "^4.0.2"
+  }
+}
