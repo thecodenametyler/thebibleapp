@@ -10,8 +10,8 @@ let thewords = {
         appId: 'thewordsapp',
         book:{
             title: 'King James Version',
-            path : '/kjv/data/kjv/',
-            url : '/kjv'
+            path : '../kjv/data/kjv/',
+            url : '../kjv'
         }
     },
     init: () => {
@@ -59,7 +59,7 @@ let thewords = {
 
 
             let backToHomeTitle = "go back";
-            let backToHomeUrl = "/";
+            let backToHomeUrl = "../";
 
             
             if(urlParams.has("book")) {

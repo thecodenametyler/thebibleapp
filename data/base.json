@@ -5,7 +5,7 @@
         {
             "title": "King James Version",
             "subtitle" : "",
-            "url" : "/kjv",
+            "url" : "./kjv",
             "thumbnail": "./assets/img/test.png"
         }
     ]
