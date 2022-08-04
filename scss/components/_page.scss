@@ -1,3 +1,24 @@
+.theword{
+    &__sticky{
+        &__title {
+            position: sticky;
+            top: 0;
+            background: #fff;
+            z-index: 3;
+        }
+        &__chapter {
+            position: sticky;
+            top: calculateRem(77px);
+            background: #fff;
+            z-index: 2;
+            @include screen('small') {
+                top: calculateRem(52px);
+            }
+        }
+    }
+}
+
+
 .page {
     &__transition {
         &__wrapper {

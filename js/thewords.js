@@ -46,7 +46,7 @@ let thewords = {
             dataUrl = thewords.el.book.path + urlParams.get("book") + '.json';
         }
 
-        //generate base app from BOOK.JSON
+        //generate base app from dataUrl json
         fetch(dataUrl,  {cache: "no-cache"}).then(response => {
             return response.json();
         }).then(data => {
@@ -91,7 +91,7 @@ let thewords = {
                             let chapterVersesMarkup = '';
 
                             if(!!currentValue.chapter) {
-                                chaptertitleMarkup = `<h3>${currentValue.chapter}</h3>`;
+                                chaptertitleMarkup = `<h2 class="h3 theword__sticky__chapter" id="chapter-${currentValue.chapter}">${currentValue.chapter}</h2>`;
                             }
                             if(!!currentValue.verses) {
                                 currentValue.verses.forEach((currentVerse, index, arr)=> {
@@ -100,7 +100,7 @@ let thewords = {
                             }
 
                             contentMarkup += `
-                            <li class="m-1">
+                            <li class="m-2">
                                 <div class="position-relative">
                                     ${chaptertitleMarkup}
                                     ${chapterVersesMarkup}
@@ -148,7 +148,7 @@ let thewords = {
                             }
                             
                             if (!!itemtitleMarkup) {
-                                linkMarkup = `<a href="${itemUrl}" title="${itemtitleMarkup}">${itemtitleMarkup}</a>`;
+                                linkMarkup = `<h2 class="h3 text-center"><a href="${itemUrl}" title="${itemtitleMarkup}">${itemtitleMarkup}</a></h2>`;
                             }
 
                             if (!!currentValue.totalchapters) {
@@ -156,7 +156,9 @@ let thewords = {
                                 var limit = currentValue.totalchapters;
                                 while (limit > 0) {
                                     --limit;
-                                    itemChapterMarkup += `<li class="m-1">${ currentValue.totalchapters - limit }</li>`;
+                                    let currChapter = currentValue.totalchapters - limit;
+                                    let chapUrl = itemUrl+'&chapter='+currChapter;
+                                    itemChapterMarkup += `<li class="m-1"><a href="${chapUrl}">${ currChapter }</a></li>`;
                                 }
                                 itemChapterMarkup += `</ul>`;
                             }
@@ -184,6 +186,28 @@ let thewords = {
 
             $('#' + appId).find('.js-thewordsTitle').html(titleMarkup);
             $('#' + appId).find('.js-thewordsContent').html(contentMarkup);
+
+            
+            if(urlParams.has("book")) {
+                $('#' + appId).find('.js-thewordsTitle').addClass('theword__sticky__title');
+            }
+
+            if(urlParams.has("book") && urlParams.has("chapter")) {
+                if($('#chapter-'+urlParams.get("chapter")).length > 0) {
+                    if(!!thewords.el.debugger) {
+                        console.log($('#chapter-'+urlParams.get("chapter")));
+                    }
+                    
+                    $('html').animate({
+                        scrollTop: $('#chapter-'+urlParams.get("chapter")).offset().top
+                    }, 1000, "linear", function() {
+                        setTimeout(() => {
+                            window.scrollBy(0, -108);
+                        }, 1100);
+                    });
+                    
+                }
+            }
         }).catch(err => {
             console.error('fetchBaseData fail', err);
             // Do something for an error here

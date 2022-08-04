@@ -6763,6 +6763,21 @@ strong, b,
 .align-content-space-around {
   align-content: space-around; }
 
+.theword__sticky__title {
+  position: sticky;
+  top: 0;
+  background: #fff;
+  z-index: 3; }
+
+.theword__sticky__chapter {
+  position: sticky;
+  top: 4.8125rem;
+  background: #fff;
+  z-index: 2; }
+  @media screen and (max-width: 767px) {
+    .theword__sticky__chapter {
+      top: 3.25rem; } }
+
 .page__transition__wrapper {
   position: absolute;
   top: 0;

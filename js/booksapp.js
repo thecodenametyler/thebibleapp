@@ -96,7 +96,7 @@ let bookapp = {
                         }
                         
                         if (!!itemTitleMarkup) {
-                            linkMarkup = `<a href="${itemUrl}" title="${itemTitleMarkup}">${itemTitleMarkup}</a>`;
+                            linkMarkup = `<a href="${itemUrl}" title="${itemTitleMarkup}"><strong>${itemTitleMarkup}</strong></a>`;
                         }
 
                         menumarkup += `
