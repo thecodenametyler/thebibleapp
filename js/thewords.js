@@ -141,7 +141,7 @@ let thewords = {
                                 itemtitleMarkup = currentValue.title;
                             }
                             if (!!currentValue.subtitle) {
-                                itemtitleMarkup += " - " + currentValue.subtitle;
+                                itemtitleMarkup += " ( " + currentValue.subtitle + " ) ";
                             }
                             if (!!currentValue.url) {
                                 itemUrl = currentValue.url;
@@ -158,7 +158,7 @@ let thewords = {
                                     --limit;
                                     let currChapter = currentValue.totalchapters - limit;
                                     let chapUrl = itemUrl+'&chapter='+currChapter;
-                                    itemChapterMarkup += `<li class="m-1"><a href="${chapUrl}">${ currChapter }</a></li>`;
+                                    itemChapterMarkup += `<li><a class="btn p-1" href="${chapUrl}">${ currChapter }</a></li>`;
                                 }
                                 itemChapterMarkup += `</ul>`;
                             }
@@ -197,14 +197,15 @@ let thewords = {
                     if(!!thewords.el.debugger) {
                         console.log($('#chapter-'+urlParams.get("chapter")));
                     }
-                    
-                    $('html').animate({
-                        scrollTop: $('#chapter-'+urlParams.get("chapter")).offset().top
-                    }, 1000, "linear", function() {
-                        setTimeout(() => {
-                            window.scrollBy(0, -108);
-                        }, 1100);
-                    });
+                    if(urlParams.get("chapter") > 1) {
+                        $('html').animate({
+                            scrollTop: $('#chapter-'+urlParams.get("chapter")).offset().top
+                        }, 1000, "linear", function() {
+                            setTimeout(() => {
+                                window.scrollBy(0, -108);
+                            }, 1100);
+                        });
+                    }
                     
                 }
             }
