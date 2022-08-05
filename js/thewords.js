@@ -133,8 +133,9 @@ let thewords = {
                 titleMarkup += `
                     <a href="${backToHomeUrl}" title="${backToHomeTitle}">${backToHomeTitle}</a>
                 `;
-
-                let searchForOptionMarkup = `<option value="">Book...</option>`;
+                
+                let searchForBookOptionMarkup = `<option value="">Book...</option>`;
+                let searchForChapterOptionMarkup = `<option value="">Chapter...</option>`;
 
                 if(!!data.books) {
                     contentMarkup += `<ul class="p-0 d-flex justify-content-center align-items-center flex-wrap flex-col">`;
@@ -146,7 +147,8 @@ let thewords = {
                             let linkMarkup = '';
                             let bookAnchor = {
                                 title: '',
-                                anchor: ''
+                                anchor: '',
+                                url: ''
                             };
 
                             if (!!currentValue.title) {
@@ -156,10 +158,11 @@ let thewords = {
                             }
                             if (!!currentValue.subtitle) {
                                 itemtitleMarkup += " ( " + currentValue.subtitle + " ) ";
-                                // bookAnchor.title = itemtitleMarkup;
+                                bookAnchor.title = itemtitleMarkup;
                             }
                             if (!!currentValue.url) {
                                 itemUrl = currentValue.url;
+                                bookAnchor.url = itemUrl;
                             }
                             
                             if (!!itemtitleMarkup) {
@@ -183,8 +186,8 @@ let thewords = {
                                     linkMarkup = currentValue;
                                 }
                             }
-
-                            searchForOptionMarkup += `<option value="book-${bookAnchor.anchor}">${bookAnchor.title}</option>`;
+                            
+                            searchForBookOptionMarkup += `<option value="${bookAnchor.url}">${bookAnchor.title}</option>`;
 
                             contentMarkup += `
                             <li class="m-1">
@@ -201,10 +204,13 @@ let thewords = {
 
                 searchForMarkup = `
                     <div class="p-t-1 m-0 d-flex justify-content-center align-items-center flex-wrap">
-                        <select class="text-center" onchange="thewords.gotoBook(event, this)">
-                            <option value="">Book...</option>
-                            ${searchForOptionMarkup}
+                        <select class="text-center js-thewordsSearchBook" onchange="thewords.getChaptersFormBook(event, this)">
+                            ${searchForBookOptionMarkup}
                         </select>
+                        <select class="text-center js-thewordsSearchChapter">
+                            ${searchForChapterOptionMarkup}
+                        </select>
+                        <button type="button" onclick="thewords.jumpToBook(event, this)">Search</button>
                     </div>
                 `;
 
@@ -233,6 +239,56 @@ let thewords = {
             console.error('fetchBaseData fail', err);
             // Do something for an error here
         });
+    },
+    jumpToBook: (e, currentElem)=> {
+        let bookUrl = $('.js-thewordsSearchBook').val();
+        let ChapterUrl = $('.js-thewordsSearchChapter').val();
+        window.location.href = bookUrl+ChapterUrl;
+    },
+    getChaptersFormBook: (e, currentElem)=>{
+        let anchor = $(currentElem).val();
+
+        let dataUrl = thewords.el.book.path + 'Books.json';
+        
+        fetch(dataUrl,  {cache: "no-cache"}).then(response => {
+            return response.json();
+        }).then(data => {
+
+            let findBook = data.books.filter(function(item){
+                return item.url == anchor;
+            });
+
+            let searchForChapterOptionMarkup = '<option value="">Chapter...</option>';
+
+            if(findBook.length > 0) {
+
+                if(!!thewords.el.debugger) {
+                    console.log(findBook[0]);
+                }
+                
+                if (!!findBook[0].totalchapters) {
+                    var limit = findBook[0].totalchapters;
+                    while (limit > 0) {
+                        --limit;
+                        let currChapter = findBook[0].totalchapters - limit;
+                        let chapUrl = '&chapter=' + currChapter;
+                        searchForChapterOptionMarkup += `<option value="${chapUrl}">${ currChapter }</option>`;
+                    }
+                }
+            } else {
+                searchForChapterOptionMarkup = `<option value="">No chapter found</option>`;
+                console.warn('No chapter found for:' , anchor, findBook);
+            }
+            
+            $('#' + thewords.el.appId).find('.js-thewordsSearchChapter').html(searchForChapterOptionMarkup);
+
+            
+        }).catch(err => {
+            console.error('fetchBooks fail', err);
+            // Do something for an error here
+        });
+
+
     },
     gotoBook: (e, currentElem)=>{
         let anchor = '#' + $(currentElem).val();
