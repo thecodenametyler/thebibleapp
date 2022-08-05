@@ -26,8 +26,11 @@ let thewords = {
         }
         if($('#' + appId).length > 0){
             let templ = `
-            <div class="js-thewordsTitle text-center"></div>
-            <div class="js-thewordsContent"></div>
+            <div class="js-thewordsHeader theword__header">
+                <div class="js-thewordsTitle text-center"></div>
+                <div class="js-thewordsSearchWrapper"></div>
+            </div>
+            <div class="js-thewordsContent theword__content"></div>
             `;
             $('#' + appId).html(templ);
             
@@ -60,6 +63,8 @@ let thewords = {
 
             let backToHomeTitle = "go back";
             let backToHomeUrl = "../";
+
+            let searchForMarkup = '';
 
             
             if(urlParams.has("book")) {
@@ -128,6 +133,9 @@ let thewords = {
                 titleMarkup += `
                     <a href="${backToHomeUrl}" title="${backToHomeTitle}">${backToHomeTitle}</a>
                 `;
+
+                let searchForOptionMarkup = `<option value="">Book...</option>`;
+
                 if(!!data.books) {
                     contentMarkup += `<ul class="p-0 d-flex justify-content-center align-items-center flex-wrap flex-col">`;
                     if(data.books.length > 0){
@@ -136,12 +144,19 @@ let thewords = {
                             let itemChapterMarkup = '';
                             let itemUrl = '';
                             let linkMarkup = '';
+                            let bookAnchor = {
+                                title: '',
+                                anchor: ''
+                            };
 
                             if (!!currentValue.title) {
                                 itemtitleMarkup = currentValue.title;
+                                bookAnchor.title = itemtitleMarkup;
+                                bookAnchor.anchor = itemtitleMarkup.replace(/[^a-zA-Z0-9]/g, '');
                             }
                             if (!!currentValue.subtitle) {
                                 itemtitleMarkup += " ( " + currentValue.subtitle + " ) ";
+                                // bookAnchor.title = itemtitleMarkup;
                             }
                             if (!!currentValue.url) {
                                 itemUrl = currentValue.url;
@@ -169,9 +184,11 @@ let thewords = {
                                 }
                             }
 
+                            searchForOptionMarkup += `<option value="book-${bookAnchor.anchor}">${bookAnchor.title}</option>`;
+
                             contentMarkup += `
                             <li class="m-1">
-                                <div class="position-relative">
+                                <div class="position-relative" id="book-${bookAnchor.anchor}">
                                     ${linkMarkup}
                                     ${itemChapterMarkup}
                                 </div>
@@ -182,14 +199,23 @@ let thewords = {
                     contentMarkup += `</ol>`;
                 }
 
+                searchForMarkup = `
+                    <div class="p-t-1 m-0 d-flex justify-content-center align-items-center flex-wrap">
+                        <select class="text-center" onchange="thewords.gotoBook(event, this)">
+                            <option value="">Book...</option>
+                            ${searchForOptionMarkup}
+                        </select>
+                    </div>
+                `;
+
             }
 
             $('#' + appId).find('.js-thewordsTitle').html(titleMarkup);
             $('#' + appId).find('.js-thewordsContent').html(contentMarkup);
-
+            $('#' + appId).find('.js-thewordsSearchWrapper').html(searchForMarkup);
             
             if(urlParams.has("book")) {
-                $('#' + appId).find('.js-thewordsTitle').addClass('theword__sticky__title');
+                $('#' + appId).find('.js-thewordsHeader').addClass('theword__sticky__header');
             }
 
             if(urlParams.has("book") && urlParams.has("chapter")) {
@@ -198,13 +224,7 @@ let thewords = {
                         console.log($('#chapter-'+urlParams.get("chapter")));
                     }
                     if(urlParams.get("chapter") > 1) {
-                        $('html').animate({
-                            scrollTop: $('#chapter-'+urlParams.get("chapter")).offset().top
-                        }, 1000, "linear", function() {
-                            setTimeout(() => {
-                                window.scrollBy(0, -108);
-                            }, 1100);
-                        });
+                        thewords.scrollToId('#chapter-'+urlParams.get("chapter"));
                     }
                     
                 }
@@ -212,6 +232,21 @@ let thewords = {
         }).catch(err => {
             console.error('fetchBaseData fail', err);
             // Do something for an error here
+        });
+    },
+    gotoBook: (e, currentElem)=>{
+        let anchor = '#' + $(currentElem).val();
+        if($(anchor).length > 0) {
+            thewords.scrollToId(anchor);
+        }
+    },
+    scrollToId: (id)=> {
+        $('html').animate({
+            scrollTop: $(id).offset().top
+        }, 1000, "linear", function() {
+            setTimeout(() => {
+                window.scrollBy(0, -108);
+            }, 1050);
         });
     }
 }

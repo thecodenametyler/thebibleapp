@@ -1,13 +1,14 @@
 .theword{
     &__sticky{
-        &__title {
-            position: sticky;
+        &__title,
+        &__header {
+            position: sticky !important;
             top: 0;
             background: #fff;
             z-index: 3;
         }
         &__chapter {
-            position: sticky;
+            position: sticky !important;
             top: calculateRem(77px);
             background: #fff;
             z-index: 2;
@@ -15,6 +16,9 @@
                 top: calculateRem(52px);
             }
         }
+    }
+    &__header {
+        position: relative;
     }
 }
 
