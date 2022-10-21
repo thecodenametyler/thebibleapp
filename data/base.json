@@ -7,6 +7,12 @@
             "subtitle" : "",
             "url" : "./kjv",
             "thumbnail": ""
+        },
+        {
+            "title": "Louis Segond",
+            "subtitle" : "",
+            "url" : "./lsg",
+            "thumbnail": ""
         }
     ]
 }

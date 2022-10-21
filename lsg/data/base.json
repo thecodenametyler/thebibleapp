@@ -1,0 +1,16 @@
+{
+    "title": "Louis Segond",
+    "subtitle" : "====",
+    "goback" : {
+        "title" : "back home",
+        "url" : "/"
+    },
+    "books" : [
+        {
+            "title": "Louis Segond",
+            "subtitle" : "",
+            "url" : "/kjv",
+            "thumbnail": "./assets/img/test.png"
+        }
+    ]
+}

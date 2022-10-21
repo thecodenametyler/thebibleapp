@@ -8,6 +8,8 @@ let thewords = {
     el: {
         debugger: true,
         appId: 'thewordsapp',
+        sourcePathField: '#sourcePath',
+        backPathField: '#backPath',
         book:{
             title: 'King James Version',
             path : '../kjv/data/kjv/',
@@ -38,23 +40,72 @@ let thewords = {
         }
     },
     fetchBaseData: (appId)=> {
+        let sourcePath = thewords.el.book.path;
+        if($(thewords.el.sourcePathField).length > 0) {
+            sourcePath = $(thewords.el.sourcePathField).val();
+        }
+
         
-        let dataUrl = thewords.el.book.path + 'Books.json';
+        /**
+         * BOOKS READER
+         */
+        fetch('./louis-segond-formatted.json',  {cache: "no-cache"}).then(response => {
+            return response.json();
+        }).then(data => {
+            if(!!thewords.el.debugger) {
+                console.log('data');
+                console.log(data);
+            }
+        });
+
+        /**
+         * BOOK PARSER
+         */
+        fetch('./data/lsg/Levitique.json',  {cache: "no-cache"}).then(response => {
+            return response.json();
+        }).then(data => {
+            if(!!thewords.el.debugger) {
+                let book = {
+                    book: data.text,
+                    chapters: []
+                }
+                data.chapters.forEach((chapter, index) => {
+                    let chap = {
+                        chapter: index+1,
+                        // verses: chapter.verses
+                        verses: []
+                    }
+                    chapter.verses.forEach((verse, ind) => {
+                        let vers = {
+                            verse: ind + 1,
+                            text: verse.text
+                        }
+                        chap.verses.push(vers);
+                    });
+                    book.chapters.push(chap);
+                });
+                console.log(book);
+            }
+        });
+        
+        let dataUrl = sourcePath + 'Books.json';
 
         let urlParams = new URLSearchParams(window.location.search)
         if(urlParams.has("book")) {
             if(!!thewords.el.debugger) {
                 console.log('get book: ', urlParams.get("book"));
             }
-            dataUrl = thewords.el.book.path + urlParams.get("book") + '.json';
+            dataUrl = sourcePath + urlParams.get("book") + '.json';
         }
+
+        console.log(dataUrl);
 
         //generate base app from dataUrl json
         fetch(dataUrl,  {cache: "no-cache"}).then(response => {
             return response.json();
         }).then(data => {
             if(!!thewords.el.debugger) {
-                console.log(data);
+                // console.log(data);
             }
 
             let titleMarkup = '';
@@ -81,7 +132,7 @@ let thewords = {
                         <p>${data.subtitle}</p>
                     `;
                 }
-                backToHomeUrl = thewords.el.book.url;
+                backToHomeUrl = $(thewords.el.backPathField).length > 0 ? $(thewords.el.backPathField).val() : thewords.el.book.url;
                 titleMarkup += `
                     <a href="${backToHomeUrl}" title="${backToHomeTitle}">${backToHomeTitle}</a>
                 `;
@@ -100,7 +151,7 @@ let thewords = {
                             }
                             if(!!currentValue.verses) {
                                 currentValue.verses.forEach((currentVerse, index, arr)=> {
-                                    chapterVersesMarkup += `<p>${currentVerse.verse}. ${currentVerse.text}</p>`;
+                                    chapterVersesMarkup += `<p id="v_${currentValue.chapter}_${currentVerse.verse}">${currentVerse.verse}. ${currentVerse.text}</p>`;
                                 });
                             }
 
@@ -248,7 +299,13 @@ let thewords = {
     getChaptersFormBook: (e, currentElem)=>{
         let anchor = $(currentElem).val();
 
-        let dataUrl = thewords.el.book.path + 'Books.json';
+        let sourcePath = thewords.el.book.path;
+
+        if($(thewords.el.sourcePathField).length > 0) {
+            sourcePath = $(thewords.el.sourcePathField).val();
+        }
+
+        let dataUrl = sourcePath + 'Books.json';
         
         fetch(dataUrl,  {cache: "no-cache"}).then(response => {
             return response.json();
