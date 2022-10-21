@@ -1,5 +1,5 @@
 {
-    "title" : "Louis Segond",
+    "title" : "Louis Segond (1910)",
     "books" : [
         {
             "title":"Genèse",
@@ -20,27 +20,27 @@
             "totalchapters" : "27"
         },
         {
-            "title":"Numbers",
-            "subtitle":"Nombres",
-            "url":"?book=Numbers",
+            "title":"Nombres",
+            "subtitle":"",
+            "url":"?book=Nombres",
             "totalchapters" : "36"
         },
         {
-            "title":"Deuteronomy",
-            "subtitle":"Deutéronome",
-            "url":"?book=Deuteronomy",
+            "title":"Deutéronome",
+            "subtitle":"",
+            "url":"?book=Deuteronome",
             "totalchapters" : "34"
         },
         {
-            "title":"Joshua",
-            "subtitle":"Josué",
-            "url":"?book=Joshua",
+            "title":"Josué",
+            "subtitle":"",
+            "url":"?book=Josue",
             "totalchapters" : "24"
         },
         {
-            "title":"Judges",
-            "subtitle":"Juges",
-            "url":"?book=Judges",
+            "title":"Juges",
+            "subtitle":"",
+            "url":"?book=Juges",
             "totalchapters" : "21"
         },
         {
@@ -236,9 +236,9 @@
             "totalchapters" : "4"
         },
         {
-            "title":"Matthew",
-            "subtitle":"Matthieu",
-            "url":"?book=Matthew",
+            "title":"Matthieu",
+            "subtitle":"",
+            "url":"?book=Matthieu",
             "totalchapters" : "28"
         },
         {

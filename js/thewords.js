@@ -22,7 +22,7 @@ let thewords = {
         }
         thewords.generateBase(thewords.el.appId);
 
-        thewords.bookParser();
+        thewords.bookParser('Matthieu');
     },
     generateBase: (appId)=> {
         if(!!thewords.el.debugger) {
@@ -110,7 +110,7 @@ let thewords = {
                             }
                             if(!!currentValue.verses) {
                                 currentValue.verses.forEach((currentVerse, index, arr)=> {
-                                    chapterVersesMarkup += `<p id="v_${currentValue.chapter}_${currentVerse.verse}">${currentVerse.verse}. ${currentVerse.text}</p>`;
+                                    chapterVersesMarkup += `<p id="v_${currentValue.chapter}_${currentVerse.verse}"><strong>${currentVerse.verse}</strong> ${currentVerse.text}</p>`;
                                 });
                             }
 
@@ -321,48 +321,116 @@ let thewords = {
             }, 1050);
         });
     },
-    bookParser: ()=> {
-        
+    bookParser: (bookname = 'Nombres')=> {
         /**
          * BOOKS READER
+         * louis-segond-formatted
          */
          fetch('./louis-segond-formatted.json',  {cache: "no-cache"}).then(response => {
             return response.json();
         }).then(data => {
             if(!!thewords.el.debugger) {
-                console.log('data');
                 console.log(data);
+                let allBook = [];
+
+                data.Testaments.forEach(testament => {
+                    testament.Books.forEach(bk => {
+                        let book = {
+                            book:bk.text,
+                            chapters:[],
+                            testament: testament.text
+                        }
+                        bk.chapters.forEach((chaps, ind) => {
+                            let chapter = {
+                                chapter: ind+1,
+                                verses: []
+                            }
+
+                            chaps.verses.forEach((vers, inx) => {
+                                let verse = {
+                                    verse: inx + 1,
+                                    text: vers.text
+                                };
+                                chapter.verses.push(verse);
+                            });
+
+                            book.chapters.push(chapter);
+
+                        });
+
+                        allBook.push(book);
+                    });
+                });
+
+                console.log(allBook);
+                
+
+                
             }
         });
 
         /**
          * BOOK PARSER
+         * base ->louis-segond-formatted
          */
-        fetch('./data/lsg/Levitique.json',  {cache: "no-cache"}).then(response => {
-            return response.json();
-        }).then(data => {
-            if(!!thewords.el.debugger) {
-                let book = {
-                    book: data.text,
-                    chapters: []
-                }
-                data.chapters.forEach((chapter, index) => {
-                    let chap = {
-                        chapter: index+1,
-                        // verses: chapter.verses
-                        verses: []
-                    }
-                    chapter.verses.forEach((verse, ind) => {
-                        let vers = {
-                            verse: ind + 1,
-                            text: verse.text
-                        }
-                        chap.verses.push(vers);
-                    });
-                    book.chapters.push(chap);
-                });
-                console.log(book);
-            }
-        });
+        // fetch('./data/lsg/'+bookname+'.json',  {cache: "no-cache"}).then(response => {
+        //     return response.json();
+        // }).then(data => {
+        //     if(!!thewords.el.debugger) {
+        //         let book = {
+        //             book: data.text,
+        //             chapters: []
+        //         }
+        //         data.chapters.forEach((chapter, index) => {
+        //             let chap = {
+        //                 chapter: index+1,
+        //                 // verses: chapter.verses
+        //                 verses: []
+        //             }
+        //             chapter.verses.forEach((verse, ind) => {
+        //                 let vers = {
+        //                     verse: ind + 1,
+        //                     text: verse.text
+        //                 }
+        //                 chap.verses.push(vers);
+        //             });
+        //             book.chapters.push(chap);
+        //         });
+        //         console.log(book);
+        //     }
+        // });
+
+        
+        // fetch('./lsg_biblegateway.json',  {cache: "no-cache"}).then(response => {
+        //     return response.json();
+        // }).then(result => {
+        //     if(!!thewords.el.debugger) {
+        //         result.data[0].forEach(bks => {
+        //             // console.log(bks);
+        //             let book = {
+        //                 book: bks.display,
+        //                 slug: bks.osis,
+        //                 testament: bks.testament,
+        //                 chapters: []
+        //             }
+        //             bks.chapters.forEach((chapter, index) => {
+        //                 let chap = {
+        //                     chapter: index+1,
+        //                     verses: []
+        //                 }
+        //                 console.log(chapter);
+        //                 // chapter.verses.forEach((verse, ind) => {
+        //                 //     let vers = {
+        //                 //         verse: ind + 1,
+        //                 //         text: verse.text
+        //                 //     }
+        //                 //     chap.verses.push(vers);
+        //                 // });
+        //                 // book.chapters.push(chap);
+        //             });
+        //             console.log(book);
+        //         });
+        //     }
+        // });
     }
 }
