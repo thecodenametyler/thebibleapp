@@ -21,6 +21,8 @@ let thewords = {
             console.log('thewords init');
         }
         thewords.generateBase(thewords.el.appId);
+
+        thewords.bookParser();
     },
     generateBase: (appId)=> {
         if(!!thewords.el.debugger) {
@@ -44,49 +46,6 @@ let thewords = {
         if($(thewords.el.sourcePathField).length > 0) {
             sourcePath = $(thewords.el.sourcePathField).val();
         }
-
-        
-        /**
-         * BOOKS READER
-         */
-        fetch('./louis-segond-formatted.json',  {cache: "no-cache"}).then(response => {
-            return response.json();
-        }).then(data => {
-            if(!!thewords.el.debugger) {
-                console.log('data');
-                console.log(data);
-            }
-        });
-
-        /**
-         * BOOK PARSER
-         */
-        fetch('./data/lsg/Levitique.json',  {cache: "no-cache"}).then(response => {
-            return response.json();
-        }).then(data => {
-            if(!!thewords.el.debugger) {
-                let book = {
-                    book: data.text,
-                    chapters: []
-                }
-                data.chapters.forEach((chapter, index) => {
-                    let chap = {
-                        chapter: index+1,
-                        // verses: chapter.verses
-                        verses: []
-                    }
-                    chapter.verses.forEach((verse, ind) => {
-                        let vers = {
-                            verse: ind + 1,
-                            text: verse.text
-                        }
-                        chap.verses.push(vers);
-                    });
-                    book.chapters.push(chap);
-                });
-                console.log(book);
-            }
-        });
         
         let dataUrl = sourcePath + 'Books.json';
 
@@ -360,6 +319,50 @@ let thewords = {
             setTimeout(() => {
                 window.scrollBy(0, -108);
             }, 1050);
+        });
+    },
+    bookParser: ()=> {
+        
+        /**
+         * BOOKS READER
+         */
+         fetch('./louis-segond-formatted.json',  {cache: "no-cache"}).then(response => {
+            return response.json();
+        }).then(data => {
+            if(!!thewords.el.debugger) {
+                console.log('data');
+                console.log(data);
+            }
+        });
+
+        /**
+         * BOOK PARSER
+         */
+        fetch('./data/lsg/Levitique.json',  {cache: "no-cache"}).then(response => {
+            return response.json();
+        }).then(data => {
+            if(!!thewords.el.debugger) {
+                let book = {
+                    book: data.text,
+                    chapters: []
+                }
+                data.chapters.forEach((chapter, index) => {
+                    let chap = {
+                        chapter: index+1,
+                        // verses: chapter.verses
+                        verses: []
+                    }
+                    chapter.verses.forEach((verse, ind) => {
+                        let vers = {
+                            verse: ind + 1,
+                            text: verse.text
+                        }
+                        chap.verses.push(vers);
+                    });
+                    book.chapters.push(chap);
+                });
+                console.log(book);
+            }
         });
     }
 }
