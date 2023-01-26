@@ -22,7 +22,7 @@ let thewords = {
         }
         thewords.generateBase(thewords.el.appId);
 
-        thewords.bookParser('Matthieu');
+        // thewords.bookParser('Matthieu');
     },
     generateBase: (appId)=> {
         if(!!thewords.el.debugger) {
