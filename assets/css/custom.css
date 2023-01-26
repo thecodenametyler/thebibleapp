@@ -3,7 +3,7 @@ $breakpoint-small: 670px;
 $breakpoint-med-small: 768px;
 $breakpoint-med: 1175px;
 */
-@import url("https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap");
 @font-face {
   font-family: 'icomoon';
   src: url("../fonts/icomoon.eot?y0v6mv");
@@ -5011,18 +5011,18 @@ $breakpoint-med: 1024px;
 
 html, body {
   color: #0f0f0f;
-  font-size: 16px;
+  font-size: 18px;
   scroll-behavior: smooth;
-  font-family: "Roboto Condensed", sans-serif;
+  font-family: "Roboto", "Arial", sans-serif;
   background: #FFF; }
 
 p {
   color: #0f0f0f;
-  font-size: 1rem;
+  font-size: 0.88889rem;
   line-height: 1.2; }
 
 small {
-  font-size: 0.875rem; }
+  font-size: 0.77778rem; }
 
 a, a:hover, a:focus {
   transition: all 0.3s ease 0s;
@@ -5034,41 +5034,41 @@ ul {
   padding: 0; }
 
 h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
-  font-family: "Roboto Condensed", sans-serif;
+  font-family: "Roboto", "Arial", sans-serif;
   margin: 0;
   font-weight: normal;
   font-weight: 700; }
 
 h1, .h1 {
-  font-size: 3.4375rem;
-  line-height: 3.6875rem; }
+  font-size: 3.05556rem;
+  line-height: 3.27778rem; }
   @media screen and (max-width: 767px) {
     h1, .h1 {
-      font-size: 1.875rem;
-      line-height: 2.125rem; } }
+      font-size: 1.66667rem;
+      line-height: 1.88889rem; } }
 
 h2, .h2 {
-  font-size: 3rem;
-  line-height: 3.25rem; }
+  font-size: 2.66667rem;
+  line-height: 2.88889rem; }
   @media screen and (max-width: 767px) {
     h2, .h2 {
-      font-size: 1.6875rem;
-      line-height: 1.9375rem; } }
+      font-size: 1.5rem;
+      line-height: 1.72222rem; } }
 
 h3, .h3 {
-  font-size: 1.5rem;
-  line-height: 1.75rem; }
+  font-size: 1.33333rem;
+  line-height: 1.55556rem; }
   @media screen and (max-width: 767px) {
     h3, .h3 {
-      font-size: 1.125rem;
-      line-height: 1.375rem; } }
+      font-size: 1rem;
+      line-height: 1.22222rem; } }
 
 .font--fancy {
-  font-family: "Roboto Condensed", sans-serif;
+  font-family: "Roboto", "Arial", sans-serif;
   font-weight: 900; }
 
 .font--regular {
-  font-family: "Roboto Condensed", sans-serif;
+  font-family: "Roboto", "Arial", sans-serif;
   font-weight: 300; }
 
 .font--lowercase {
@@ -6598,13 +6598,13 @@ h3, .h3 {
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  font-family: "Roboto Condensed", sans-serif;
-  font-size: 1rem;
+  font-family: "Roboto", "Arial", sans-serif;
+  font-size: 0.88889rem;
   padding: 12px 30px;
   color: #0f0f0f; }
   .btn--lg {
     padding: 24px 38px;
-    font-size: 1.625rem; }
+    font-size: 1.44444rem; }
   .btn--fill {
     background: #0f0f0f;
     color: #FFF; }
@@ -6612,11 +6612,11 @@ h3, .h3 {
     border-radius: 50px; }
   .btn--icon {
     font-weight: 700;
-    font-size: 0.875rem;
-    line-height: 1.125rem; }
+    font-size: 0.77778rem;
+    line-height: 1rem; }
     .btn--icon [class^="icon-"], .btn--icon [class*=" icon-"] {
-      font-size: 0.875rem;
-      line-height: 0.875rem;
+      font-size: 0.77778rem;
+      line-height: 0.77778rem;
       margin-right: 12px; }
     .btn--icon-circle {
       padding: 0;
@@ -6637,8 +6637,8 @@ h3, .h3 {
           top: 50%;
           left: 50%;
           transform: translate(-50%, -50%);
-          font-size: 1.125rem;
-          line-height: 1.125rem; }
+          font-size: 1rem;
+          line-height: 1rem; }
       .btn--icon-circle--right [class^="icon-"], .btn--icon-circle--right [class*=" icon-"] {
         margin-right: 0;
         margin-left: 20px; }
@@ -6771,12 +6771,12 @@ strong, b,
 
 .theword__sticky__chapter {
   position: sticky !important;
-  top: 4.8125rem;
+  top: 4.27778rem;
   background: #fff;
   z-index: 2; }
   @media screen and (max-width: 767px) {
     .theword__sticky__chapter {
-      top: 3.25rem; } }
+      top: 2.88889rem; } }
 
 .theword__header {
   position: relative; }
@@ -6814,8 +6814,8 @@ strong, b,
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 2.5rem;
-    line-height: 2.5rem;
+    font-size: 2.22222rem;
+    line-height: 2.22222rem;
     opacity: 0;
     animation: fadein 2s infinite;
     -moz-animation: fadein 2s infinite;

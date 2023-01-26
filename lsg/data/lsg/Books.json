@@ -45,194 +45,194 @@
         },
         {
             "title":"Ruth",
-            "subtitle":"Ruth",
+            "subtitle":"",
             "url":"?book=Ruth",
             "totalchapters" : "4"
         },
         {
             "title":"1 Samuel",
-            "subtitle":"1 Samuel",
+            "subtitle":"",
             "url":"?book=1Samuel",
             "totalchapters" : "31"
         },
         {
             "title":"2 Samuel",
-            "subtitle":"2 Samuel",
+            "subtitle":"",
             "url":"?book=2Samuel",
             "totalchapters" : "24"
         },
         {
-            "title":"1 Kings",
-            "subtitle":"1 Rois",
-            "url":"?book=1Kings",
+            "title":"1 Rois",
+            "subtitle":"",
+            "url":"?book=1Rois",
             "totalchapters" : "22"
         },
         {
-            "title":"2 Kings",
-            "subtitle":"2 Rois",
-            "url":"?book=2Kings",
+            "title":"2 Rois",
+            "subtitle":"",
+            "url":"?book=2Rois",
             "totalchapters" : "25"
         },
         {
-            "title":"1 Chronicles",
-            "subtitle":"1 Chroniques",
-            "url":"?book=1Chronicles",
+            "title":"1 Chroniques",
+            "subtitle":"",
+            "url":"?book=1Chroniques",
             "totalchapters" : "29"
         },
         {
-            "title":"2 Chronicles",
-            "subtitle":"2 Chroniques",
-            "url":"?book=2Chronicles",
+            "title":"2 Chroniques",
+            "subtitle":"",
+            "url":"?book=2Chroniques",
             "totalchapters" : "36"
         },
         {
-            "title":"Ezra",
-            "subtitle":"Esdras",
-            "url":"?book=Ezra",
+            "title":"Esdras",
+            "subtitle":"",
+            "url":"?book=Esdras",
             "totalchapters" : "10"
         },
         {
-            "title":"Nehemiah",
-            "subtitle":"Néhémie",
-            "url":"?book=Nehemiah",
+            "title":"Néhémie",
+            "subtitle":"",
+            "url":"?book=Nehemie",
             "totalchapters" : "13"
         },
         {
             "title":"Esther",
-            "subtitle":"Esther",
+            "subtitle":"",
             "url":"?book=Esther",
             "totalchapters" : "10"
         },
         {
             "title":"Job",
-            "subtitle":"Job",
+            "subtitle":"",
             "url":"?book=Job",
             "totalchapters" : "42"
         },
         {
-            "title":"Psalms",
-            "subtitle":"Psaumes",
-            "url":"?book=Psalms",
+            "title":"Psaumes",
+            "subtitle":"",
+            "url":"?book=Psaumes",
             "totalchapters" : "150"
         },
         {
-            "title":"Proverbs",
-            "subtitle":"Proverbes",
-            "url":"?book=Proverbs",
+            "title":"Proverbes",
+            "subtitle":"",
+            "url":"?book=Proverbes",
             "totalchapters" : "31"
         },
         {
-            "title":"Ecclesiastes",
-            "subtitle":"Ecclésiaste",
-            "url":"?book=Ecclesiastes",
+            "title":"Ecclésiaste",
+            "subtitle":"",
+            "url":"?book=Ecclesiaste",
             "totalchapters" : "12"
         },
         {
-            "title":"Song of Solomon",
-            "subtitle":"Cantique des Cantiques",
-            "url":"?book=SongofSolomon",
+            "title":"Cantique des Cantiques",
+            "subtitle":"",
+            "url":"?book=CantiquedesCantiques",
             "totalchapters" : "8"
         },
         {
-            "title":"Isaiah",
-            "subtitle":"Ésaïe",
-            "url":"?book=Isaiah",
+            "title":"Ésaïe",
+            "subtitle":"",
+            "url":"?book=Esaie",
             "totalchapters" : "66"
         },
         {
-            "title":"Jeremiah",
-            "subtitle":"Jérémie",
-            "url":"?book=Jeremiah",
+            "title":"Jérémie",
+            "subtitle":"",
+            "url":"?book=Jeremie",
             "totalchapters" : "52"
         },
         {
-            "title":"Lamentations",
-            "subtitle":"Lamentations",
-            "url":"?book=Lamentations",
+            "title":"Lamentations de Jérémie",
+            "subtitle":"",
+            "url":"?book=LamentationsdeJeremie",
             "totalchapters" : "5"
         },
         {
-            "title":"Ezekiel",
-            "subtitle":"Ézéchiel",
-            "url":"?book=Ezekiel",
+            "title":"Ézéchiel",
+            "subtitle":"",
+            "url":"?book=Ezechiel",
             "totalchapters" : "48"
         },
         {
             "title":"Daniel",
-            "subtitle":"Daniel",
+            "subtitle":"",
             "url":"?book=Daniel",
             "totalchapters" : "12"
         },
         {
-            "title":"Hosea",
-            "subtitle":"Osée",
-            "url":"?book=Hosea",
+            "title":"Osée",
+            "subtitle":"",
+            "url":"?book=Osee",
             "totalchapters" : "14"
         },
         {
-            "title":"Joel",
-            "subtitle":"Joël",
+            "title":"Joël",
+            "subtitle":"",
             "url":"?book=Joel",
             "totalchapters" : "3"
         },
         {
             "title":"Amos",
-            "subtitle":"Amos",
+            "subtitle":"",
             "url":"?book=Amos",
             "totalchapters" : "9"
         },
         {
-            "title":"Obadiah",
-            "subtitle":"Abdias",
-            "url":"?book=Obadiah",
+            "title":"Abdias",
+            "subtitle":"",
+            "url":"?book=Abdias",
             "totalchapters" : "1"
         },
         {
-            "title":"Jonah",
-            "subtitle":"Jonas",
-            "url":"?book=Jonah",
+            "title":"Jonas",
+            "subtitle":"",
+            "url":"?book=Jonas",
             "totalchapters" : "4"
         },
         {
-            "title":"Micah",
-            "subtitle":"Michée",
-            "url":"?book=Micah",
+            "title":"Michée",
+            "subtitle":"",
+            "url":"?book=Michee",
             "totalchapters" : "7"
         },
         {
             "title":"Nahum",
-            "subtitle":"Nahum",
+            "subtitle":"",
             "url":"?book=Nahum",
             "totalchapters" : "3"
         },
         {
-            "title":"Habakkuk",
-            "subtitle":"Habacuc",
-            "url":"?book=Habakkuk",
+            "title":"Habacuc",
+            "subtitle":"",
+            "url":"?book=Habacuc",
             "totalchapters" : "3"
         },
         {
-            "title":"Zephaniah",
-            "subtitle":"Sophonie",
-            "url":"?book=Zephaniah",
+            "title":"Sophonie",
+            "subtitle":"",
+            "url":"?book=Sophonie",
             "totalchapters" : "3"
         },
         {
-            "title":"Haggai",
-            "subtitle":"Aggée",
-            "url":"?book=Haggai",
+            "title":"Aggée",
+            "subtitle":"",
+            "url":"?book=Aggee",
             "totalchapters" : "2"
         },
         {
-            "title":"Zechariah",
-            "subtitle":"Zacharie",
-            "url":"?book=Zechariah",
+            "title":"Zacharie",
+            "subtitle":"",
+            "url":"?book=Zacharie",
             "totalchapters" : "14"
         },
         {
-            "title":"Malachi",
-            "subtitle":"Malachie",
-            "url":"?book=Malachi",
+            "title":"Malachie",
+            "subtitle":"",
+            "url":"?book=Malachie",
             "totalchapters" : "4"
         },
         {
@@ -242,159 +242,159 @@
             "totalchapters" : "28"
         },
         {
-            "title":"Mark",
-            "subtitle":"Mark",
-            "url":"?book=Mark",
+            "title":"Marc",
+            "subtitle":"",
+            "url":"?book=Marc",
             "totalchapters" : "12"
         },
         {
-            "title":"Luke",
-            "subtitle":"Luc",
-            "url":"?book=Luke",
+            "title":"Luc",
+            "subtitle":"",
+            "url":"?book=Luc",
             "totalchapters" : "24"
         },
         {
-            "title":"John",
-            "subtitle":"Jean",
-            "url":"?book=John",
+            "title":"Jean",
+            "subtitle":"",
+            "url":"?book=Jean",
             "totalchapters" : "21"
         },
         {
-            "title":"Acts",
-            "subtitle":"Actes",
-            "url":"?book=Acts",
+            "title":"Actes des Apôtres",
+            "subtitle":"",
+            "url":"?book=ActesdesApotres",
             "totalchapters" : "28"
         },
         {
-            "title":"Romans",
-            "subtitle":"Romains",
-            "url":"?book=Romans",
+            "title":"Romains",
+            "subtitle":"",
+            "url":"?book=Romains",
             "totalchapters" : "16"
         },
         {
-            "title":"1 Corinthians",
-            "subtitle":"1 Corinthiens",
-            "url":"?book=1Corinthians",
+            "title":"1 Corinthiens",
+            "subtitle":"",
+            "url":"?book=1Corinthiens",
             "totalchapters" : "16"
         },
         {
-            "title":"2 Corinthians",
-            "subtitle":"2 Corinthiens",
-            "url":"?book=2Corinthians",
+            "title":"2 Corinthiens",
+            "subtitle":"",
+            "url":"?book=2Corinthiens",
             "totalchapters" : "13"
         },
         {
-            "title":"Galatians",
-            "subtitle":"Galates",
-            "url":"?book=Galatians",
+            "title":"Galates",
+            "subtitle":"",
+            "url":"?book=Galates",
             "totalchapters" : "6"
         },
         {
-            "title":"Ephesians",
-            "subtitle":"Éphésiens",
-            "url":"?book=Ephesians",
+            "title":"Éphésiens",
+            "subtitle":"",
+            "url":"?book=Ephesiens",
             "totalchapters" : "6"
         },
         {
-            "title":"Philippians",
-            "subtitle":"Philippiens",
-            "url":"?book=Philippians",
+            "title":"Philippiens",
+            "subtitle":"",
+            "url":"?book=Philippiens",
             "totalchapters" : "4"
         },
         {
-            "title":"Colossians",
-            "subtitle":"Colossiens",
-            "url":"?book=Colossians",
+            "title":"Colossiens",
+            "subtitle":"",
+            "url":"?book=Colossiens",
             "totalchapters" : "4"
         },
         {
-            "title":"1 Thessalonians",
-            "subtitle":"1 Thessaloniciens",
-            "url":"?book=1Thessalonians",
+            "title":"1 Thessaloniciens",
+            "subtitle":"",
+            "url":"?book=1Thessaloniciens",
             "totalchapters" : "5"
         },
         {
-            "title":"2 Thessalonians",
-            "subtitle":"2 Thessaloniciens",
-            "url":"?book=2Thessalonians",
+            "title":"2 Thessaloniciens",
+            "subtitle":"",
+            "url":"?book=2Thessaloniciens",
             "totalchapters" : "3"
         },
         {
-            "title":"1 Timothy",
-            "subtitle":"1 Timothée",
-            "url":"?book=1Timothy",
+            "title":"1 Timothée",
+            "subtitle":"",
+            "url":"?book=1Timothee",
             "totalchapters" : "6"
         },
         {
-            "title":"2 Timothy",
-            "subtitle":"2 Timothée",
-            "url":"?book=2Timothy",
+            "title":"2 Timothée",
+            "subtitle":"",
+            "url":"?book=2Timothee",
             "totalchapters" : "4"
         },
         {
-            "title":"Titus",
-            "subtitle":"Tite",
-            "url":"?book=Titus",
+            "title":"Tite",
+            "subtitle":"",
+            "url":"?book=Tite",
             "totalchapters" : "3"
         },
         {
-            "title":"Philemon",
-            "subtitle":"Philémon",
+            "title":"Philémon",
+            "subtitle":"",
             "url":"?book=Philemon",
             "totalchapters" : "1"
         },
         {
-            "title":"Hebrews",
-            "subtitle":"Hébreux",
-            "url":"?book=Hebrews",
+            "title":"Hébreux",
+            "subtitle":"",
+            "url":"?book=Hebreux",
             "totalchapters" : "13"
         },
         {
-            "title":"James",
-            "subtitle":"Jacques",
-            "url":"?book=James",
+            "title":"Jacques",
+            "subtitle":"",
+            "url":"?book=Jacques",
             "totalchapters" : "5"
         },
         {
-            "title":"1 Peter",
-            "subtitle":"1 Pierre",
-            "url":"?book=1Peter",
+            "title":"1 Pierre",
+            "subtitle":"",
+            "url":"?book=1Pierre",
             "totalchapters" : "5"
         },
         {
-            "title":"2 Peter",
-            "subtitle":"2 Pierre",
-            "url":"?book=2Peter",
+            "title":"2 Pierre",
+            "subtitle":"",
+            "url":"?book=2Pierre",
             "totalchapters" : "3"
         },
         {
-            "title":"1 John",
-            "subtitle":"1 Jean",
-            "url":"?book=1John",
+            "title":"1 Jean",
+            "subtitle":"",
+            "url":"?book=1Jean",
             "totalchapters" : "5"
         },
         {
-            "title":"2 John",
-            "subtitle":"2 Jean",
-            "url":"?book=2John",
+            "title":"2 Jean",
+            "subtitle":"",
+            "url":"?book=2Jean",
             "totalchapters" : "1"
         },
         {
-            "title":"3 John",
-            "subtitle":"3 Jean",
-            "url":"?book=3John",
+            "title":"3 Jean",
+            "subtitle":"",
+            "url":"?book=3Jean",
             "totalchapters" : "1"
         },
         {
             "title":"Jude",
-            "subtitle":"Jude",
+            "subtitle":"",
             "url":"?book=Jude",
             "totalchapters" : "1"
         },
         {
-            "title":"Revelation",
-            "subtitle":"Apocalypse",
-            "url":"?book=Revelation",
+            "title":"Apocalypse",
+            "subtitle":"",
+            "url":"?book=Apocalypse",
             "totalchapters" : "22"
         }
     ]
