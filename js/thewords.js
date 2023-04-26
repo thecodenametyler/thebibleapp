@@ -6,28 +6,48 @@ $(function() {
 
 let thewords = {
     el: {
-        debugger: true,
+        debugger: false,
         appId: 'thewordsapp',
         sourcePathField: '#sourcePath',
         backPathField: '#backPath',
+        bookJsonPathField: '#bookJsonPath',
         book:{
             title: 'King James Version',
             path : '../kjv/data/kjv/',
-            url : '../kjv'
+            url : '../kjv',
+            bookJson: './louis-segond-formatted.json',
+        },
+        storage: {
+            chaptersVerses: [],
+            book: ''
         }
     },
     init: () => {
         if(!!thewords.el.debugger) {
             console.log('thewords init');
         }
-        thewords.generateBase(thewords.el.appId);
+        thewords.initSearchDB();
 
+        setTimeout(() => {
+            
+            let urlParams = new URLSearchParams(window.location.search);
+            if(urlParams.has("present")) {
+                //DO presentation
+                let verse = urlParams.get("verse");
+                thewords.searchVerse(verse, 'present');
+            } else {
+                //DO generate base
+                thewords.generateBase(thewords.el.appId);
+            }
+
+        }, 300);
         // thewords.bookParser('Matthieu');
     },
     generateBase: (appId)=> {
         if(!!thewords.el.debugger) {
             console.log('thewords generateBase', "#"+ appId);
         }
+
         if($('#' + appId).length > 0){
             let templ = `
             <div class="js-thewordsHeader theword__header">
@@ -49,7 +69,7 @@ let thewords = {
         
         let dataUrl = sourcePath + 'Books.json';
 
-        let urlParams = new URLSearchParams(window.location.search)
+        let urlParams = new URLSearchParams(window.location.search);
         if(urlParams.has("book")) {
             if(!!thewords.el.debugger) {
                 console.log('get book: ', urlParams.get("book"));
@@ -222,6 +242,16 @@ let thewords = {
                         </select>
                         <button type="button" onclick="thewords.jumpToBook(event, this)">Search</button>
                     </div>
+
+                    <div class="p-t-1 m-0 d-flex justify-content-center align-items-center flex-wrap">
+                        <div style="position: relative;">
+                            <input type="text" placeholder="search..." onkeyup="thewords.autocompleteSearch(event, this)">
+                            <div style="z-index: 1;position: absolute;border: 0;left: 0;width: 100%;background: red;">
+                                <ul class="js-thewordsAutocompleteSearchList" style="margin: 0;max-height: 330px;overflow: auto;"><ul>
+                            </div>
+                        </div>
+                        <button type="button" onclick="">Search</button>
+                    </div>
                 `;
 
             }
@@ -332,6 +362,7 @@ let thewords = {
             if(!!thewords.el.debugger) {
                 console.log(data);
                 let allBook = [];
+                let chaptersVerses = [];
 
                 data.Testaments.forEach(testament => {
                     testament.Books.forEach(bk => {
@@ -352,6 +383,9 @@ let thewords = {
                                     text: vers.text
                                 };
                                 chapter.verses.push(verse);
+                                
+                                let chapterVerse =  `${book.book}-${chapter.chapter}:${verse.verse} || ${verse.text} || ${bk.index}-${chapter.chapter}:${verse.verse}`;
+                                chaptersVerses.push(chapterVerse);
                             });
 
                             book.chapters.push(chapter);
@@ -363,74 +397,118 @@ let thewords = {
                 });
 
                 console.log(allBook);
-                
+                console.log(chaptersVerses);
+
+                var serchText =  new RegExp(thewords.toNormalText('1 Pi-2:24'), 'i');
+                var arraycontainsturtles = chaptersVerses.filter(el => thewords.toNormalText(el).match(serchText));
+                console.log(arraycontainsturtles);
 
                 
             }
         });
+    },
+    toNormalText: (str) => {
+        return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    },
+    initSearchDB: ()=> {
 
-        /**
-         * BOOK PARSER
-         * base ->louis-segond-formatted
-         */
-        // fetch('./data/lsg/'+bookname+'.json',  {cache: "no-cache"}).then(response => {
-        //     return response.json();
-        // }).then(data => {
-        //     if(!!thewords.el.debugger) {
-        //         let book = {
-        //             book: data.text,
-        //             chapters: []
-        //         }
-        //         data.chapters.forEach((chapter, index) => {
-        //             let chap = {
-        //                 chapter: index+1,
-        //                 // verses: chapter.verses
-        //                 verses: []
-        //             }
-        //             chapter.verses.forEach((verse, ind) => {
-        //                 let vers = {
-        //                     verse: ind + 1,
-        //                     text: verse.text
-        //                 }
-        //                 chap.verses.push(vers);
-        //             });
-        //             book.chapters.push(chap);
-        //         });
-        //         console.log(book);
-        //     }
-        // });
+        let bookJsonUrl = $(thewords.el.bookJsonPathField).length > 0 ? $(thewords.el.bookJsonPathField).val() : thewords.el.book.bookJson;
 
-        
-        // fetch('./lsg_biblegateway.json',  {cache: "no-cache"}).then(response => {
-        //     return response.json();
-        // }).then(result => {
-        //     if(!!thewords.el.debugger) {
-        //         result.data[0].forEach(bks => {
-        //             // console.log(bks);
-        //             let book = {
-        //                 book: bks.display,
-        //                 slug: bks.osis,
-        //                 testament: bks.testament,
-        //                 chapters: []
-        //             }
-        //             bks.chapters.forEach((chapter, index) => {
-        //                 let chap = {
-        //                     chapter: index+1,
-        //                     verses: []
-        //                 }
-        //                 console.log(chapter);
-        //                 // chapter.verses.forEach((verse, ind) => {
-        //                 //     let vers = {
-        //                 //         verse: ind + 1,
-        //                 //         text: verse.text
-        //                 //     }
-        //                 //     chap.verses.push(vers);
-        //                 // });
-        //                 // book.chapters.push(chap);
-        //             });
-        //             console.log(book);
-        //         });
-        //     }
-        // });
+        fetch(bookJsonUrl,  {cache: "no-cache"}).then(response => {
+            return response.json();
+        }).then(data => {
+            if(!!thewords.el.debugger) {
+                console.log(data);
+            }
+
+            let chaptersVerses = [];
+
+            data.Testaments.forEach(testament => {
+                testament.Books.forEach(bk => {
+                    let book = {
+                        book:bk.text,
+                        index:bk.index,
+                        chapters:[],
+                        testament: testament.text
+                    }
+                    bk.chapters.forEach((chaps, ind) => {
+                        let chapter = {
+                            chapter: ind+1
+                        }
+
+                        chaps.verses.forEach((vers, inx) => {
+                            let verse = {
+                                verse: inx + 1,
+                                text: vers.text
+                            };
+                            
+                            let chapterVerse =  `${book.book}-${chapter.chapter}:${verse.verse} || ${verse.text} || ${book.index}-${chapter.chapter}:${verse.verse} , ${book.book} ${chapter.chapter} ${verse.verse} , ${book.index} ${chapter.chapter} ${verse.verse}`;
+                            chaptersVerses.push(chapterVerse);
+                        });
+
+
+                    });
+
+                });
+            });
+
+            thewords.el.storage.chaptersVerses = chaptersVerses;
+            
+        });
+    },
+    searchVerse: (searchText = null, viewMode = 'autocomplete')=> {
+            
+        var searchResult = thewords.searchTextInArray(searchText, thewords.el.storage.chaptersVerses);
+        switch (viewMode) {
+            case 'autocomplete':
+                thewords.displayAutocompleteSearchResult(searchResult);
+            break;
+            case 'present':
+                let templ = ``;
+
+                templ = `<h1>${searchResult}</h1>`;
+                
+                $('#' + thewords.el.appId).html(templ);
+            break;
+        }
+
+    },
+    searchTextInArray: (str = null, arrayOfValues = [])=> {
+        if(!!str) {
+            var searchFor =  new RegExp(thewords.toNormalText(str), 'gmi');
+            var filteredArr = arrayOfValues.filter(el => thewords.toNormalText(el).match(searchFor));
+            return filteredArr;
+        }
+        return [];
+    },
+    autocompleteSearch: (e, currentElem)=> {
+        var searchFor = $(currentElem).val();
+        if(searchFor.length >= 2) {
+            thewords.searchVerse(searchFor);
+        }
+    },
+    displayAutocompleteSearchResult: (data = [])=>{
+        var searchResultMarkup = ``;
+        console.log(data);
+        data.every((result, key) => {
+            searchResultMarkup = searchResultMarkup + `<li style="padding: 4px;">${result}</li>`;
+            if(key > 10) {
+                return false;
+            }
+            return true
+        });
+        $('#' + thewords.el.appId).find('.js-thewordsAutocompleteSearchList').html(searchResultMarkup);
+    },
+    presentVerse: (verse = null) => {
+        if (!!verse) {
+            let reff = !!verse && verse.length > 0 ? verse : 'Ps-117:1'; 
+            let url = window.location.href + '?present&verse=' + reff;
+            var popup = window.open(url, "popup", "fullscreen");
+            if (popup.outerWidth < screen.availWidth || popup.outerHeight < screen.availHeight)
+            {
+               popup.moveTo(0,0);
+               popup.resizeTo(screen.availWidth, screen.availHeight);
+            }
+        }
     }
 }
